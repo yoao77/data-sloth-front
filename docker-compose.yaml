@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: next_db
+      MYSQL_USER: next_user
+      MYSQL_PASSWORD: next_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
+
+  app:
+    build: .
+    container_name: next_app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: mysql://next_user:next_pass@db:3306/next_db
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
