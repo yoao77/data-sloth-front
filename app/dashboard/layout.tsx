@@ -4,9 +4,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Header */}
             <header className="w-full bg-gray-900 text-gray-100 px-6 py-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 overflow-hidden relative">
                     <div className="w-8 h-8 bg-gray-700 rounded"></div>
-                    <h1 className="text-lg font-semibold">Meu Sistema</h1>
+                    <h1 className="text-lg font-semibold">Data Sloth</h1>
                 </div>
 
                 <ul className="flex items-center gap-4">
@@ -34,8 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                 {/* Main */}
                 <main className="flex-1 bg-gray-100 p-6">
-                    <h2 className="text-2xl font-bold mb-4 text-black">Conteúdo principal</h2>
-                    <p>Aqui vai sua aplicação...</p>
+                    {children}
                 </main>
 
             </div>

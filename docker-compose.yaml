@@ -32,6 +32,9 @@ services:
     container_name: next_app
     ports:
       - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
     environment:
       DATABASE_URL: mysql://next_user:next_pass@db:3306/next_db
     depends_on:
